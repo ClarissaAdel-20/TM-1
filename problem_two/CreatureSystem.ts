@@ -1,4 +1,10 @@
 export class CreatureSystem {
+  setWaterConditions() {
+      throw new Error("Method not implemented.");
+  }
+  loadTerrain() {
+      throw new Error("Method not implemented.");
+  }
   initialize() {
     console.log("Creature system initialized");
   }

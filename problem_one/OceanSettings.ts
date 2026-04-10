@@ -1,3 +1,4 @@
+// Creational Pattern - Singleton
 export class OceanSettings {
 
   private static instance: OceanSettings;

@@ -1,3 +1,4 @@
+// Behavioral Pattern - Facade
 import { CreatureSystem } from "./CreatureSystem";
 import { DiverSystem } from "./DiverSystem";
 import { EnvironmentSystem } from "./EnvironmentSystem";

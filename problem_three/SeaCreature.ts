@@ -1,27 +1,53 @@
+// Structural Pattern - State
+interface State{
+  handle(creature: SeaCreature): void;
+}
+
+  // States
+  class NormalState implements State{
+    handle(creature: SeaCreature): void{
+      console.log(creature.name + " is calmly swimming around...");
+      creature.setState (new CuriousState());
+    }
+  }
+
+  class CuriousState implements State{
+    handle(creature: SeaCreature): void{
+      console.log(creature.name + " is curious and swims closer...");
+      creature.setState (new AggresiveState());
+    }
+  }
+
+  class AggresiveState implements State{
+    handle(creature: SeaCreature): void{
+      console.log(creature.name + " becomes aggressive and attacks!");
+      creature.setState (new FleeingState());
+    }
+  }
+
+  class FleeingState implements State{
+    handle(creature: SeaCreature): void{
+      console.log(creature.name + " is fleeing to safer waters...");
+      creature.setState (new FleeingState());
+    }
+  }
+
+  // Main class
 export class SeaCreature {
   public name: string;
-  public state: "normal" | "fleeing" | "aggressive" | "curious";
+  public state: State;
 
   constructor(name: string) {
     this.name = name;
-    this.state = "normal";
+    this.state = (new NormalState()); // default state
   }
 
-  updateBehavior() {
-    console.log(`\n[${this.name} Behavior Update]`);
+  setState(state: State): void{
+    this.state = state;
+  }
 
-    if (this.state === "normal") {
-      console.log(this.name + " is calmly swimming around...");
-      this.state = "curious";
-    } else if (this.state === "curious") {
-      console.log(this.name + " is curious and swims closer...");
-      this.state = "aggressive";
-    } else if (this.state === "aggressive") {
-      console.log(this.name + " becomes aggressive and attacks!");
-      this.state = "fleeing";
-    } else if (this.state === "fleeing") {
-      console.log(this.name + " is fleeing to safer waters...");
-      this.state = "normal";
-    }
+  updateBehavior(): void {
+    console.log('\n[${this.name} Behavior Update]');
+    this.state.handle(this);
   }
 }
