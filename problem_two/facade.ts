@@ -22,8 +22,6 @@ export class DiveFacade{
         this.diver.equipGear();
         this.diver.checkVitals();
 
-        console.log("\n Dive is ready! \n");
-
-        
+        console.log("\n Dive is ready! \n");   
     }
 }
