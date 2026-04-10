@@ -1,16 +1,15 @@
 import { OceanSettings } from "./OceanSettings";
 
-const configA = new OceanSettings(100, 50, "Shallow Reef");
-const configB = new OceanSettings(40, 20, "Deep Trench");
+// ambil instance, bukan lagi pakai new
+const settings1 = OceanSettings.getInstance();
+settings1.adjustVisibility(80);
+settings1.adjustSound(30);
 
-console.log("\nGame Configuration A");
-console.log("Visibility:", configA.visibility);
-console.log("Sound Level:", configA.soundLevel);
-console.log("Region:", configA.region);
+console.log("Settings1: ", settings1);
 
-console.log("\nGame Configuration B");
-console.log("Visibility:", configB.visibility);
-console.log("Sound Level:", configB.soundLevel);
-console.log("Region:", configB.region);
+// ambil lagi instance kedua
+const settings2 = OceanSettings.getInstance();
 
-console.log("\nConfig A and Config B are same instance:", configA === configB, '\n');
+console.log("Setting2: ", settings2);
+
+console.log("\nSame instance:", settings1 === settings2);
